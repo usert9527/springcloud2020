@@ -1,0 +1,33 @@
+server:
+  port: 8004
+
+spring:
+  application:
+    name: cloud-provider-payment
+  cloud:
+    zookeeper:
+      connect-string: 192.168.126.136:2181
+
+
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource    #当前数据源操作类型
+    username: root
+    password: 123456
+    driver-class-name: org.gjt.mm.mysql.Driver      #mysql驱动包
+    url: jdbc:mysql://localhost:3306/db2020?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    druid:
+      filters: stat
+      initial-size: 2
+      max-active: 300
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1
+      test-while-idle: true
+      test-on-borrow: true
+      pool-prepared-statements: false
+      max-pool-prepared-statement-per-connection-size: 200
+
+
+
+
