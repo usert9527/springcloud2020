@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.UUID;
+
 /**
  * @date 2020/3/14 - 11:34
  */
@@ -18,7 +20,7 @@ public class PaymentController
     @GetMapping(value = "/payment/zk")
     public String getzk()
     {
-        return "hello zookeeper "+port;
+        return "hello zookeeper " + port + "/t" + UUID.randomUUID().toString();
     }
 
 }

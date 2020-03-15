@@ -10,6 +10,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>cloud-api-commons</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>cloud-consumerconsul-order80</module>
+    </modules>
 
     <dependencies>
         <dependency>

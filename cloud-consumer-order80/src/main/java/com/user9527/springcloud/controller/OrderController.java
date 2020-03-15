@@ -2,7 +2,9 @@ package com.user9527.springcloud.controller;
 
 import com.user9527.springcloud.entities.CommonResult;
 import com.user9527.springcloud.entities.Payment;
+import com.user9527.springcloud.lb.MyLB;
 import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,6 +25,12 @@ public class OrderController
     @Resource
     private RestTemplate restTemplate;
 
+    @Resource
+    private DiscoveryClient discoveryClient;
+
+    @Resource
+    private MyLB myLB;
+
     @GetMapping("/consumer/payment/create")
     public CommonResult<Payment> create(Payment payment)
     {
@@ -39,5 +47,17 @@ public class OrderController
     public Object getDiscovery()
     {
        return this.restTemplate.getForObject(PAYMENT_URL+"/payment/discovery",Object.class);
+    }
+
+    @GetMapping(value = "/consumer/payment/bl")
+    public String getPaymentBl()
+    {
+        List<ServiceInstance> instances = this.discoveryClient.getInstances("CLOUD-PAYMENT-SERVICE");
+
+        ServiceInstance instances1 = myLB.getInstances(instances);
+
+        System.out.println(instances1.getUri());
+
+        return this.restTemplate.getForObject(instances1.getUri()+"/payment/bl",String.class);
     }
 }
