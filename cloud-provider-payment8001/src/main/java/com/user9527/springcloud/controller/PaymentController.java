@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @date 2020/3/12 - 22:22
@@ -48,10 +49,16 @@ public class PaymentController
         Payment paymentById = this.paymentService.getPaymentById(id);
         log.info("*******查询结果：" + paymentById + "哈哈--你大爷0001111");
 
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         if (paymentById != null) {
             return new CommonResult(200, "查询成功：" + port, paymentById);
         } else {
-            return new CommonResult(444, "没有对应记录，查询ID：" + id, null);
+            return new CommonResult(444, "没有对应记录，查询ID：" + id + "端口：" + port, null);
         }
     }
 
