@@ -3,16 +3,15 @@ package com.user9527.springcloud;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 /**
- * @date 2020/3/12 - 21:33
+ * @date 2020/3/17 - 14:52
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-public class PaymentMain8001
+public class GatewayMain9527
 {
     public static void main(String[] args) {
-        SpringApplication.run(PaymentMain8001.class,args);
+        SpringApplication.run(GatewayMain9527.class,args);
     }
 }
