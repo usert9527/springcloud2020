@@ -56,8 +56,7 @@ public class PaymentController
         }
 
         if (paymentById != null) {
-            return new CommonResult(200, "查询成功：" + port, paymentById);
-        } else {
+            return new CommonResult(200, "查询成功：" + port, paymentById); } else {
             return new CommonResult(444, "没有对应记录，查询ID：" + id + "端口：" + port, null);
         }
     }
@@ -82,5 +81,11 @@ public class PaymentController
     public String getPaymentBl()
     {
         return port;
+    }
+
+    @GetMapping(value = "/payment/zipkin")
+    public String getzipkin()
+    {
+        return "链路跟踪 哈哈 " + port + "\t q(≧▽≦q)" ;
     }
 }

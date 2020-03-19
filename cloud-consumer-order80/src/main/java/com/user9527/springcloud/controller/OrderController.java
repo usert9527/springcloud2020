@@ -19,7 +19,6 @@ import java.util.List;
 @RestController
 public class OrderController
 {
-
     private static final String PAYMENT_URL = "http://CLOUD-PAYMENT-SERVICE";
 
     @Resource
@@ -59,5 +58,11 @@ public class OrderController
         System.out.println(instances1.getUri());
 
         return this.restTemplate.getForObject(instances1.getUri()+"/payment/bl",String.class);
+    }
+
+    @GetMapping(value = "/consumer/payment/zipkin")
+    public String getPaymentZipkin()
+    {
+        return this.restTemplate.getForObject(PAYMENT_URL + "/payment/zipkin" ,String.class);
     }
 }
