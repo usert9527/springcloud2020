@@ -1,0 +1,42 @@
+server:
+  port: 2003
+spring:
+  application:
+    name: seata-account-service
+  cloud:
+    alibaba:
+      seata:
+        #自定义事务组名称需要与 seata-server中的对应
+        tx-service-group: fsp_tx_group
+    nacos:
+      discovery:
+        server-addr: 106.53.74.231:80
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://cdb-lgm4rcto.cd.tencentcdb.com:10129/seata_account?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: aqyxyynew@!520
+#    druid:
+#      filters: stat
+#      initial-size: 2
+#      max-active: 300
+#      max-wait: 60000
+#      time-between-eviction-runs-millis: 60000
+#      min-evictable-idle-time-millis: 300000
+#      validation-query: SELECT 1
+#      test-while-idle: true
+#      test-on-borrow: true
+#      pool-prepared-statements: false
+#      max-pool-prepared-statement-per-connection-size: 200
+
+feign:
+  hystrix:
+    enabled: false
+
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+logging:
+  level:
+    io:
+      seata: info
